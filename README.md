@@ -7,7 +7,7 @@ https://fazilprojects.github.io/ad-performance-dashboard-roas-analyzer/
 
 ## Screenshot
 
-Add screenshot after publishing:
+![Ad Performance Dashboard & ROAS Analyzer](ad-performance-dashboard-roas-analyzer-dashboard.png)
 
 `ad-performance-dashboard-roas-analyzer-dashboard.png`
 
