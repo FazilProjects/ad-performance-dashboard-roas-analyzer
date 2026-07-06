@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A local JavaScript ad performance dashboard and ROAS analyzer portfolio project by Fazil Waseem.">
+  <title>Ad Performance Dashboard &amp; ROAS Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-system" aria-hidden="true">
+    <div class="gradient-field gradient-field-one"></div>
+    <div class="gradient-field gradient-field-two"></div>
+    <div class="chart-line chart-line-one"></div>
+    <div class="chart-line chart-line-two"></div>
+  </div>
+
+  <header class="hero">
+    <nav class="topbar" aria-label="Project identity">
+      <a class="brand" href="#top" aria-label="Ad Performance Dashboard home">
+        <span class="brand-mark">FW</span>
+        <span>Fazil Waseem Portfolio</span>
+      </a>
+      <span class="truth-badge">Local sample-data dashboard</span>
+    </nav>
+
+    <section class="hero-grid" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Performance marketing analytics project</p>
+        <h1>Ad Performance Dashboard &amp; ROAS Analyzer</h1>
+        <p class="hero-text">
+          Analyze spend, leads, sales, revenue, ROAS, wasted spend, and campaign optimization opportunities from manual sample campaign data.
+        </p>
+        <div class="chip-row" aria-label="Dashboard focus areas">
+          <span class="chip">ROAS</span>
+          <span class="chip">CPL</span>
+          <span class="chip">CPA</span>
+          <span class="chip">Wasted Spend</span>
+          <span class="chip">Optimization Plan</span>
+        </div>
+      </div>
+
+      <aside class="preview-card" aria-label="Dashboard preview">
+        <div class="preview-header">
+          <span>Dashboard Preview</span>
+          <span class="live-dot">Ready</span>
+        </div>
+        <div class="preview-grid">
+          <div>
+            <span>Total Spend</span>
+            <strong id="previewSpend">$0</strong>
+          </div>
+          <div>
+            <span>Revenue</span>
+            <strong id="previewRevenue">$0</strong>
+          </div>
+          <div>
+            <span>ROAS</span>
+            <strong id="previewRoas">0.00x</strong>
+          </div>
+          <div>
+            <span>Wasted Spend Risk</span>
+            <strong id="previewRisk">Low</strong>
+          </div>
+        </div>
+        <div class="score-strip">
+          <span>Budget efficiency</span>
+          <div class="score-track">
+            <span id="previewScoreBar"></span>
+          </div>
+          <strong id="previewScore">0/100</strong>
+        </div>
+      </aside>
+    </section>
+  </header>
+
+  <main>
+    <section class="section-panel input-section" aria-labelledby="input-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Campaign Data Input</p>
+          <h2 id="input-heading">Manual campaign data</h2>
+        </div>
+        <p>Add fictional or sample campaign rows, load the demo data, then export a client-ready local report.</p>
+      </div>
+
+      <form id="campaignForm" class="campaign-form">
+        <label>
+          <span>Date</span>
+          <input type="date" id="date" required>
+        </label>
+        <label>
+          <span>Platform</span>
+          <select id="platform" required>
+            <option value="">Select platform</option>
+            <option value="Google Ads">Google Ads</option>
+            <option value="Meta Ads">Meta Ads</option>
+          </select>
+        </label>
+        <label class="wide-field">
+          <span>Campaign name</span>
+          <input type="text" id="campaignName" placeholder="Example: Emergency Dentist Search" required>
+        </label>
+        <label>
+          <span>Spend</span>
+          <input type="number" id="spend" min="0" step="0.01" placeholder="1200" required>
+        </label>
+        <label>
+          <span>Impressions</span>
+          <input type="number" id="impressions" min="0" step="1" placeholder="45000" required>
+        </label>
+        <label>
+          <span>Clicks</span>
+          <input type="number" id="clicks" min="0" step="1" placeholder="1800" required>
+        </label>
+        <label>
+          <span>Leads</span>
+          <input type="number" id="leads" min="0" step="1" placeholder="90" required>
+        </label>
+        <label>
+          <span>Booked calls</span>
+          <input type="number" id="bookedCalls" min="0" step="1" placeholder="28" required>
+        </label>
+        <label>
+          <span>Sales</span>
+          <input type="number" id="sales" min="0" step="1" placeholder="12" required>
+        </label>
+        <label>
+          <span>Revenue</span>
+          <input type="number" id="revenue" min="0" step="0.01" placeholder="6200" required>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="button primary">Add Campaign</button>
+          <button type="button" class="button secondary" id="loadDemoBtn">Load Demo Data</button>
+          <button type="button" class="button muted" id="resetBtn">Reset Dashboard</button>
+          <button type="button" class="button dark" id="exportBtn">Export Report</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="section-panel" aria-labelledby="kpi-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">KPI Summary Cards</p>
+          <h2 id="kpi-heading">Account performance snapshot</h2>
+        </div>
+        <p id="summaryNote">Load demo data or add campaigns to generate paid advertising metrics.</p>
+      </div>
+      <div class="kpi-grid" id="kpiGrid"></div>
+      <div class="highlight-grid" id="highlightGrid"></div>
+    </section>
+
+    <section class="section-panel" aria-labelledby="table-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Performance Table</p>
+          <h2 id="table-heading">Campaign-level results</h2>
+        </div>
+        <p>Metrics are calculated locally from the campaign rows below.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Platform</th>
+              <th>Campaign Name</th>
+              <th>Spend</th>
+              <th>Revenue</th>
+              <th>Leads</th>
+              <th>Sales</th>
+              <th>CTR</th>
+              <th>CPC</th>
+              <th>CPL</th>
+              <th>CPA</th>
+              <th>ROAS</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="campaignTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section-panel" aria-labelledby="platform-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Platform Comparison</p>
+          <h2 id="platform-heading">Google Ads vs Meta Ads</h2>
+        </div>
+        <p>Compare spend efficiency, lead volume, sales volume, and revenue by platform.</p>
+      </div>
+      <div class="platform-grid" id="platformGrid"></div>
+    </section>
+
+    <section class="analytics-grid">
+      <article class="section-panel" aria-labelledby="roas-heading">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">ROAS Analyzer</p>
+            <h2 id="roas-heading">Return on ad spend</h2>
+          </div>
+        </div>
+        <div id="roasAnalyzer" class="analysis-list"></div>
+      </article>
+
+      <article class="section-panel" aria-labelledby="funnel-heading">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">Funnel Performance Summary</p>
+            <h2 id="funnel-heading">Conversion flow</h2>
+          </div>
+        </div>
+        <div id="funnelSummary" class="funnel-list"></div>
+      </article>
+
+      <article class="section-panel" aria-labelledby="cpl-cpa-heading">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">CPL &amp; CPA Analyzer</p>
+            <h2 id="cpl-cpa-heading">Acquisition cost quality</h2>
+          </div>
+        </div>
+        <div id="cplCpaAnalyzer" class="analysis-list"></div>
+      </article>
+    </section>
+
+    <section class="section-panel" aria-labelledby="waste-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Wasted Spend Detector</p>
+          <h2 id="waste-heading">Risk findings</h2>
+        </div>
+        <p>Flags are based on spend, ROAS, CPA, lead volume, and sales outcomes.</p>
+      </div>
+      <div id="wasteList" class="risk-grid"></div>
+    </section>
+
+    <section class="section-panel" aria-labelledby="recommendations-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Action Recommendations</p>
+          <h2 id="recommendations-heading">Practical next moves</h2>
+        </div>
+        <p>Recommendations are rule-based and generated locally from the entered data.</p>
+      </div>
+      <div id="recommendationGrid" class="recommendation-grid"></div>
+    </section>
+
+    <section class="section-panel" aria-labelledby="plan-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">7-Day Optimization Plan</p>
+          <h2 id="plan-heading">Weekly improvement workflow</h2>
+        </div>
+        <p>Use the plan as a structured review checklist for sample campaign analysis.</p>
+      </div>
+      <div id="optimizationPlan" class="plan-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Portfolio project by Fazil Waseem. This is not a real ad platform and does not connect to Google Ads, Meta Ads, analytics tools, APIs, or live ad accounts.
+      All calculations and recommendations are generated locally with JavaScript from manual or demo sample data.
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
