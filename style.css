@@ -24,12 +24,16 @@
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  min-width: 320px;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   background:
     linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
@@ -39,6 +43,35 @@ body {
   color: var(--ink);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
   line-height: 1.5;
+}
+
+img,
+svg,
+canvas,
+video,
+iframe,
+table,
+section,
+article,
+aside,
+header,
+footer,
+main,
+form,
+label,
+input,
+select,
+button,
+.preview-card,
+.section-panel,
+.metric-card,
+.platform-card,
+.analysis-card,
+.risk-card,
+.recommendation-card,
+.plan-card,
+.highlight-card {
+  max-width: 100%;
 }
 
 body::before {
@@ -54,6 +87,7 @@ button,
 input,
 select {
   font: inherit;
+  min-width: 0;
 }
 
 button {
@@ -133,6 +167,7 @@ button {
 main,
 .site-footer {
   width: min(1180px, calc(100% - 40px));
+  max-width: 1180px;
   margin: 0 auto;
 }
 
@@ -151,6 +186,11 @@ main,
   color: var(--ink);
   text-decoration: none;
   font-weight: 800;
+  min-width: 0;
+}
+
+.brand span:last-child {
+  overflow-wrap: anywhere;
 }
 
 .brand-mark {
@@ -179,6 +219,7 @@ main,
   font-weight: 800;
   padding: 7px 11px;
   white-space: nowrap;
+  max-width: 100%;
 }
 
 .hero-grid {
@@ -193,6 +234,7 @@ main,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
 
 .eyebrow {
@@ -215,17 +257,20 @@ h1 {
   margin-bottom: 18px;
   font-size: clamp(2.35rem, 6vw, 5rem);
   line-height: 0.98;
+  overflow-wrap: anywhere;
 }
 
 h2 {
   margin-bottom: 0;
   font-size: clamp(1.35rem, 3vw, 2rem);
   line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 h3 {
   margin-bottom: 8px;
   font-size: 1rem;
+  overflow-wrap: anywhere;
 }
 
 .hero-text {
@@ -260,6 +305,8 @@ h3 {
 .preview-card {
   padding: 22px;
   box-shadow: var(--shadow);
+  width: 100%;
+  min-width: 0;
 }
 
 .preview-header,
@@ -295,6 +342,7 @@ h3 {
 .plan-grid {
   display: grid;
   gap: 16px;
+  min-width: 0;
 }
 
 .preview-grid {
@@ -307,6 +355,7 @@ h3 {
   border: 1px solid rgba(37, 99, 235, 0.12);
   border-radius: var(--radius);
   background: linear-gradient(145deg, #ffffff, rgba(239, 246, 255, 0.74));
+  min-width: 0;
 }
 
 .preview-grid span,
@@ -360,10 +409,12 @@ main {
   display: grid;
   gap: 24px;
   padding: 10px 0 34px;
+  min-width: 0;
 }
 
 .section-panel {
   padding: 24px;
+  min-width: 0;
 }
 
 .section-heading {
@@ -384,6 +435,7 @@ main {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
+  min-width: 0;
 }
 
 label {
@@ -392,6 +444,7 @@ label {
   color: #3e4a5d;
   font-size: 0.88rem;
   font-weight: 900;
+  min-width: 0;
 }
 
 .wide-field {
@@ -401,6 +454,7 @@ label {
 input,
 select {
   width: 100%;
+  max-width: 100%;
   min-height: 46px;
   border: 1px solid rgba(30, 48, 76, 0.18);
   border-radius: var(--radius);
@@ -424,6 +478,7 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 10px;
   padding-top: 6px;
+  min-width: 0;
 }
 
 .button {
@@ -473,6 +528,8 @@ button:focus-visible {
 .recommendation-card,
 .plan-card {
   padding: 18px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .metric-card {
@@ -514,10 +571,22 @@ button:focus-visible {
 }
 
 .table-wrap {
+  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: #ffffff;
+}
+
+.table-scroll-hint {
+  display: none;
+  margin: -8px 0 12px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 800;
 }
 
 table {
@@ -581,6 +650,7 @@ tbody tr:hover {
 
 .platform-card {
   background: linear-gradient(145deg, #ffffff, rgba(248, 250, 252, 0.82));
+  min-width: 0;
 }
 
 .platform-top strong {
@@ -598,6 +668,8 @@ tbody tr:hover {
   padding: 12px;
   border-radius: var(--radius);
   background: rgba(37, 99, 235, 0.06);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .mini-metrics strong {
@@ -618,6 +690,7 @@ tbody tr:hover {
   color: var(--muted);
   font-size: 0.86rem;
   font-weight: 900;
+  min-width: 0;
 }
 
 .bar-track {
@@ -643,6 +716,7 @@ tbody tr:hover {
 .funnel-list {
   display: grid;
   gap: 12px;
+  min-width: 0;
 }
 
 .analysis-card {
@@ -691,6 +765,7 @@ tbody tr:hover {
   display: grid;
   gap: 8px;
   align-content: start;
+  min-width: 0;
 }
 
 .plan-card strong {
@@ -718,13 +793,31 @@ tbody tr:hover {
 }
 
 @media (max-width: 1024px) {
+  .hero,
+  main,
+  .site-footer {
+    width: min(100% - 32px, 1180px);
+  }
+
   .hero-grid,
   .analytics-grid {
     grid-template-columns: 1fr;
   }
 
+  .hero-grid {
+    gap: 22px;
+    padding: 44px 0 30px;
+  }
+
   .campaign-form,
   .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .highlight-grid,
+  .platform-grid,
+  .risk-grid,
+  .recommendation-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -734,10 +827,17 @@ tbody tr:hover {
 }
 
 @media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+
   .hero,
   main,
   .site-footer {
-    width: min(100% - 28px, 1180px);
+    width: 100%;
+    max-width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .topbar,
@@ -748,61 +848,326 @@ tbody tr:hover {
     flex-direction: column;
   }
 
+  .topbar {
+    gap: 12px;
+    padding-top: 18px;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .truth-badge {
+    align-self: flex-start;
+  }
+
+  h1 {
+    font-size: clamp(2.625rem, 9vw, 3rem);
+    line-height: 1.04;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 5.5vw, 1.875rem);
+  }
+
   .hero-grid {
-    padding-top: 34px;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 30px 0 26px;
+  }
+
+  .hero-text {
+    font-size: 1rem;
+  }
+
+  .chip-row {
+    gap: 8px;
+  }
+
+  .preview-card {
+    padding: 18px;
+  }
+
+  .preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .preview-grid div {
+    min-height: 96px;
+    padding: 14px;
+  }
+
+  .preview-grid strong,
+  .metric-value {
+    font-size: clamp(1.625rem, 7vw, 2rem);
+  }
+
+  .score-strip {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .score-track {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  main {
+    gap: 18px;
+    padding-top: 4px;
+  }
+
+  .section-panel {
+    padding: 18px;
+  }
+
+  .section-heading {
+    gap: 10px;
+    margin-bottom: 16px;
   }
 
   .preview-grid,
   .platform-grid,
   .highlight-grid,
+  .analytics-grid,
   .risk-grid,
-  .recommendation-grid {
+  .recommendation-grid,
+  .plan-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 
   .campaign-form {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .wide-field {
     grid-column: auto;
   }
 
+  input,
+  select {
+    min-height: 48px;
+    padding: 12px;
+  }
+
   .form-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 10px;
   }
 
   .button {
     width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .metric-card,
+  .highlight-card,
+  .platform-card,
+  .analysis-card,
+  .risk-card,
+  .recommendation-card,
+  .plan-card {
+    padding: 16px;
+  }
+
+  .mini-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .risk-top,
+  .recommendation-top,
+  .platform-top,
+  .bar-label {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .table-scroll-hint {
+    display: block;
+  }
+
+  table {
+    min-width: 940px;
+  }
+
+  th,
+  td {
+    padding: 12px 10px;
+  }
+
+  .site-footer {
+    padding-bottom: 28px;
   }
 }
 
 @media (max-width: 540px) {
+  .hero,
+  main,
+  .site-footer {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
   h1 {
-    font-size: 2.2rem;
+    font-size: clamp(2rem, 9.5vw, 2.375rem);
+    line-height: 1.06;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero-grid {
+    padding-top: 24px;
+  }
+
+  .hero-text,
+  .section-heading p,
+  .analysis-card p,
+  .risk-card p,
+  .recommendation-card p,
+  .plan-card p,
+  .platform-card p,
+  .site-footer p {
+    font-size: 0.94rem;
   }
 
   .section-panel,
   .preview-card {
-    padding: 18px;
+    padding: 16px;
+  }
+
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-grid div {
+    min-height: auto;
   }
 
   .kpi-grid,
+  .highlight-grid,
   .mini-metrics,
+  .platform-grid,
+  .analytics-grid,
+  .risk-grid,
+  .recommendation-grid,
   .plan-grid,
   .form-actions {
     grid-template-columns: 1fr;
   }
 
   .chip-row {
-    align-items: stretch;
-    flex-direction: column;
+    align-items: flex-start;
+    flex-direction: row;
   }
 
   .chip,
   .truth-badge {
+    width: auto;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .truth-badge {
     width: 100%;
+  }
+
+  .metric-card {
+    min-height: 126px;
+  }
+
+  .metric-value {
+    font-size: 1.85rem;
+  }
+
+  .empty-state {
+    padding: 18px;
+    font-size: 0.94rem;
+  }
+
+  table {
+    min-width: 900px;
+  }
+}
+
+@media (max-width: 390px) {
+  .hero,
+  main,
+  .site-footer {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 9vw, 2.125rem);
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+
+  .topbar {
+    padding-top: 14px;
+  }
+
+  .brand {
+    font-size: 0.92rem;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+  }
+
+  .chip-row {
+    gap: 7px;
+  }
+
+  .chip {
+    font-size: 0.76rem;
+    padding: 6px 9px;
+  }
+
+  .section-panel,
+  .preview-card,
+  .metric-card,
+  .highlight-card,
+  .platform-card,
+  .analysis-card,
+  .risk-card,
+  .recommendation-card,
+  .plan-card {
+    padding: 14px;
+  }
+
+  .preview-grid strong,
+  .metric-value {
+    font-size: 1.65rem;
+  }
+
+  .button {
+    font-size: 0.94rem;
+  }
+
+  th,
+  td {
+    font-size: 0.82rem;
+  }
+
+  table {
+    min-width: 860px;
   }
 }
 
